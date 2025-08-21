@@ -15,7 +15,7 @@
 
 ## 📜 Código de Conducta
 
-Este proyecto sigue el [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/). Al participar, se espera que mantengas este código. Reporta comportamientos inaceptables a [soporte@goldtech.mx](mailto:soporte@goldtech.mx).
+Este proyecto sigue el [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/). Al participar, se espera que mantengas este código. Reporta comportamientos inaceptables a [github@goldtech.mx](mailto:github@goldtech.mx).
 
 ## 🎯 Formas de Contribuir
 
