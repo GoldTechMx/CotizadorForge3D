@@ -14,8 +14,8 @@ const DEFAULT_BRANDING = {
     tagline: "Soluciones de Impresión 3D",
     description: "Empresa líder en servicios de impresión 3D",
     website: "https://goldtech.mx",
-    email: "contacto@goldtech.mx",
-    phone: "+52 477 123 4567",
+    email: "support@goldtech.mx",
+    phone: "+52 477 175 60 28",
     address: "León de los Aldama, Guanajuato, México"
   },
 
@@ -67,10 +67,10 @@ const DEFAULT_BRANDING = {
       username: "",
       enabled: false
     },
-    whatsapp: {
-      url: "",
-      number: "",
-      enabled: false
+    whatsapp: { 
+      url: "https://wa.me/524771756028",
+      number: "4771756028", 
+      enabled: true
     }
   },
 
