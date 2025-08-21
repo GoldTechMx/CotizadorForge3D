@@ -291,9 +291,9 @@ lighthouse index.html
 
 ### Canales de Soporte
 
-- **Email:** soporte@goldtech.mx
-- **WhatsApp:** +52 477 123 4567
-- **Discord:** [GoldTech Community](https://discord.gg/goldtech)
+- **Email:** support@goldtech.mx
+- **WhatsApp:** Próximamente
+- **Discord:** Próximamente
 - **GitHub Issues:** Para reportar bugs
 
 ### FAQ
