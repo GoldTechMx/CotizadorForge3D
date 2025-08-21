@@ -1,0 +1,51 @@
+{
+  "name": "cotizador-forge3d",
+  "version": "2.1.0",
+  "description": "Herramienta profesional para calcular precios exactos de proyectos de impresión 3D",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve -s . -l 3000",
+    "test": "npm run test:html && npm run test:css && npm run test:js",
+    "test:html": "npx html-validate index.html",
+    "test:css": "npx stylelint assets/css/styles.css",
+    "test:js": "npx eslint assets/js/*.js",
+    "build": "npm run minify:css && npm run minify:js",
+    "minify:css": "npx csso assets/css/styles.css --output assets/css/styles.min.css",
+    "minify:js": "npx terser assets/js/app.js -o assets/js/app.min.js && npx terser assets/js/config.js -o assets/js/config.min.js",
+    "lighthouse": "npx lighthouse https://gtt.mx/forge3d --output=html --output-path=./lighthouse-report.html",
+    "deploy": "npm run build && npm run test"
+  },
+  "keywords": [
+    "3d-printing",
+    "quotation",
+    "calculator",
+    "pwa",
+    "mexico",
+    "forge3d"
+  ],
+  "author": "GoldTech MX <contacto@goldtech.mx>",
+  "license": "MIT",
+  "homepage": "https://gtt.mx/forge3d",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GoldTechMx/CotizadorForge3D.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GoldTechMx/CotizadorForge3D/issues"
+  },
+  "devDependencies": {
+    "csso-cli": "^4.0.2",
+    "eslint": "^8.57.0",
+    "html-validate": "^8.7.4",
+    "lighthouse": "^11.4.0",
+    "serve": "^14.2.1",
+    "stylelint": "^15.11.0",
+    "terser": "^5.26.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}
