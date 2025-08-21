@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO Optimizado -->
+  <title>Cotizador Forge3D - Calculadora Profesional de Precios para Impresión 3D | GoldTech MX</title>
+  <meta name="description" content="Herramienta profesional gratuita para calcular precios exactos de proyectos de impresión 3D. Incluye costos de material PLA, ABS, PETG, tiempo, electricidad y más. Cotizador oficial de GoldTech MX." />
+  <meta name="keywords" content="cotizador impresión 3D México, calculadora precios 3D, Forge3D, GoldTech MX, PLA ABS PETG, presupuesto impresión 3D, cotización impresión 3D, calculadora filamento 3D, precios impresión 3D México" />
+  <meta name="author" content="GoldTech MX" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="Spanish" />
+  <meta name="geo.region" content="MX" />
+  <meta name="geo.country" content="México" />
+  
+  <!-- Open Graph para redes sociales -->
+  <meta property="og:title" content="Cotizador Forge3D - Calculadora Profesional de Impresión 3D" />
+  <meta property="og:description" content="Herramienta gratuita para calcular precios exactos de proyectos de impresión 3D. Incluye todos los costos: material, tiempo, electricidad y más." />
+  <meta property="og:image" content="https://bio.goldtech.mx/forge3d_oscuro" />
+  <meta property="og:url" content="https://gtt.mx/forge3d" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="GoldTech MX" />
+  <meta property="og:locale" content="es_MX" />
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cotizador Forge3D - Calculadora de Impresión 3D" />
+  <meta name="twitter:description" content="Calcula precios exactos para tus proyectos de impresión 3D de forma profesional y gratuita." />
+  <meta name="twitter:image" content="https://bio.goldtech.mx/forge3d_oscuro" />
+  <meta name="twitter:site" content="@goldtechmx" />
+  
+  <!-- Favicon mejorado -->
+  <link rel="icon" type="image/x-icon" href="https://bio.goldtech.mx/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://bio.goldtech.mx/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://bio.goldtech.mx/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://bio.goldtech.mx/favicon-16x16.png">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://gtt.mx/forge3d" />
+  
+  <!-- Preload recursos críticos -->
+  <link rel="preload" href="./assets/css/styles.css" as="style">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+  <link rel="preload" href="https://bio.goldtech.mx/forge3d_oscuro" as="image">
+  
+  <!-- DNS Prefetch para recursos externos -->
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="//bio.goldtech.mx">
+  
+  <!-- Hojas de estilo -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  
+  <!-- Schema.org mejorado -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Cotizador Forge3D",
+    "description": "Calculadora profesional para determinar precios de proyectos de impresión 3D con costos de material, tiempo, electricidad y más",
+    "url": "https://gtt.mx/forge3d",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "browserRequirements": "Requiere JavaScript habilitado",
+    "softwareVersion": "2.1",
+    "datePublished": "2024-01-01",
+    "dateModified": "2025-08-20",
+    "inLanguage": "es-MX",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "MXN",
+      "availability": "https://schema.org/InStock"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "GoldTech MX",
+      "url": "https://goldtech.mx",
+      "logo": "https://bio.goldtech.mx/logogoldtech",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "availableLanguage": "Spanish"
+      },
+      "sameAs": [
+        "https://instagram.com/goldtechmx",
+        "https://tiktok.com/@goldtechmx",
+        "https://youtube.com/@goldtechmx",
+        "https://linkedin.com/company/goldtechmx",
+        "https://facebook.com/goldtechmx"
+      ]
+    },
+    "featureList": [
+      "Cálculo automático de costos de material",
+      "Estimación de tiempo de impresión",
+      "Cálculo de costos eléctricos",
+      "Múltiples tipos de filamento soportados",
+      "Generación de PDF para cotizaciones",
+      "Configuración personalizable"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="main-layout">
+    <!-- Pestaña de configuración -->
+    <button class="config-toggle-btn" onclick="toggleSidebar()" id="configToggleBtn">
+      <i class="fas fa-cog"></i>
+      <span>Configuración</span>
+    </button>
+
+    <!-- Overlay para cerrar sidebar -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <!-- Sidebar de Configuración -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h3><i class="fas fa-cog"></i> Configuración</h3>
+        <div class="header-buttons">
+          <button class="theme-toggle" onclick="toggleTheme()">
+            <i class="fas fa-adjust"></i>
+            <span id="theme-text">Claro</span>
+          </button>
+          <button class="close-config" onclick="closeSidebar()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="config-grid">
+        <div class="config-group">
+          <div class="config-item">
+            <span class="tooltip-icon" data-tooltip="costo de electricidad por kwh impacta directamente el costo de operación de la impresora durante el tiempo de impresión">ℹ️</span>
+            <div style="flex: 1;">
+              <label for="tarifaLuz">Tarifa Eléctrica (MXN/kWh)</label>
+              <input type="number" id="tarifaLuz" value="2.8" step="0.1" min="0" onchange="guardarConfiguracion()" />
+              <div class="quick-options">
+                <button onclick="aplicarValorRapido('tarifaLuz', 1.083)" class="quick-btn">CFE Básica (1.083)</button>
+                <button onclick="aplicarValorRapido('tarifaLuz', 1.315)" class="quick-btn">CFE Intermedio (1.315)</button>
+                <button onclick="aplicarValorRapido('tarifaLuz', 3.847)" class="quick-btn">CFE Alto (3.847)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="config-group">
+          <div class="config-item">
+            <span class="tooltip-icon" data-tooltip="valor por hora de trabajo de impresión 3d incluye tiempo de preparación supervisión y postprocesado básico">ℹ️</span>
+            <div style="flex: 1;">
+              <label for="tarifaHora">Tarifa por Hora (MXN)</label>
+              <input type="number" id="tarifaHora" value="28" step="1" min="0" onchange="guardarConfiguracion()" />
+              <div class="quick-options">
+                <button onclick="aplicarValorRapido('tarifaHora', 10)" class="quick-btn">Básico (10)</button>
+                <button onclick="aplicarValorRapido('tarifaHora', 20)" class="quick-btn">Estándar (20)</button>
+                <button onclick="aplicarValorRapido('tarifaHora', 30)" class="quick-btn">Premium (30)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="config-group">
+          <div class="config-item">
+            <span class="tooltip-icon" data-tooltip="porcentaje de ganancia aplicado sobre el costo base es tu margen de utilidad antes de comisiones">ℹ️</span>
+            <div style="flex: 1;">
+              <label for="porcentajeUtilidad">Utilidad (%)</label>
+              <input type="number" id="porcentajeUtilidad" value="18" step="1" min="0" max="100" onchange="guardarConfiguracion()" />
+              <div class="quick-options">
+                <button onclick="aplicarValorRapido('porcentajeUtilidad', 10)" class="quick-btn">Básica (10)</button>
+                <button onclick="aplicarValorRapido('porcentajeUtilidad', 15)" class="quick-btn">Estándar (15)</button>
+                <button onclick="aplicarValorRapido('porcentajeUtilidad', 20)" class="quick-btn">Premium (20)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="config-group">
+          <div class="config-item">
+            <span class="tooltip-icon" data-tooltip="costo por hora de desgaste y mantenimiento de la impresora 3d incluye piezas de repuesto y mantenimiento">ℹ️</span>
+            <div style="flex: 1;">
+              <label for="desgasteMaquina">Desgaste Máquina (MXN/h)</label>
+              <input type="number" id="desgasteMaquina" value="12" step="1" min="0" onchange="guardarConfiguracion()" />
+              <div class="quick-options">
+                <button onclick="aplicarValorRapido('desgasteMaquina', 8)" class="quick-btn">Básico (8)</button>
+                <button onclick="aplicarValorRapido('desgasteMaquina', 12)" class="quick-btn">Estándar (12)</button>
+                <button onclick="aplicarValorRapido('desgasteMaquina', 18)" class="quick-btn">Industrial (18)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="config-group">
+          <div class="config-item">
+            <span class="tooltip-icon" data-tooltip="costo por cada 100g de filamento usado por desgaste del sistema de extrusión y hotend">ℹ️</span>
+            <div style="flex: 1;">
+              <label for="desgasteCarrete">Desgaste Carrete (MXN/100g)</label>
+              <input type="number" id="desgasteCarrete" value="8" step="0.1" min="0" onchange="guardarConfiguracion()" />
+              <div class="quick-options">
+                <button onclick="aplicarValorRapido('desgasteCarrete', 5)" class="quick-btn">Bajo (5)</button>
+                <button onclick="aplicarValorRapido('desgasteCarrete', 8)" class="quick-btn">Normal (8)</button>
+                <button onclick="aplicarValorRapido('desgasteCarrete', 12)" class="quick-btn">Alto (12)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 1.5rem;">
+        <button onclick="restaurarConfiguracion()" style="background: #6b7280; color: white; padding: 0.6rem 1rem; font-size: 0.9rem;">🔄 Restaurar</button>
+        <button onclick="exportarConfiguracion()" style="padding: 0.6rem 1rem; font-size: 0.9rem;">📤 Exportar</button>
+        <input type="file" id="importConfig" accept=".json" style="display: none;" onchange="importarConfiguracion()" />
+        <button onclick="document.getElementById('importConfig').click()" style="padding: 0.6rem 1rem; font-size: 0.9rem;">📥 Importar</button>
+      </div>
+    </div>
+
+    <!-- Contenido Principal -->
+    <div class="main-content" id="mainContent">
+      <div class="header">
+        <div class="logos-container">
+          <img id="forge-logo" src="https://bio.goldtech.mx/forge3d_oscuro" alt="Forge3D Logo" class="logo-forge" loading="lazy">
+        </div>
+        <h1>
+          <span class="title-cotizador">Cotizador</span>
+        </h1>
+      </div>
+
+      <div class="form-section">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombrePieza">
+              <i class="fas fa-cube"></i> Nombre de la pieza
+              <span class="tooltip-icon" data-tooltip="nombre descriptivo de la pieza a imprimir ayuda a identificarla en la cotización">ℹ️</span>
+            </label>
+            <input type="text" id="nombrePieza" placeholder="Ej: Llavero personalizado" />
+          </div>
+          
+          <div class="form-group">
+            <label for="cantidad">
+              <i class="fas fa-hashtag"></i> Cantidad de piezas
+              <span class="tooltip-icon" data-tooltip="número de piezas idénticas a imprimir afecta el costo total y puede activar descuentos por volumen">ℹ️</span>
+            </label>
+            <input type="number" id="cantidad" placeholder="Ej: 5" min="1" value="1" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <i class="fas fa-clock"></i> Tiempo de impresión
+            <span class="tooltip-icon" data-tooltip="tiempo total estimado de impresión incluye todas las capas y movimientos de la impresora">ℹ️</span>
+          </label>
+          <div class="time-inputs">
+            <div class="time-group">
+              <label>Horas</label>
+              <input type="number" id="horas" placeholder="0" min="0" max="999" value="0" oninput="actualizarTiempoTotal()" />
+            </div>
+            <span class="time-separator">:</span>
+            <div class="time-group">
+              <label>Minutos</label>
+              <input type="number" id="minutos" placeholder="0" min="0" max="59" value="0" oninput="actualizarTiempoTotal()" />
+            </div>
+            <span class="time-separator">:</span>
+            <div class="time-group">
+              <label>Segundos</label>
+              <input type="number" id="segundos" placeholder="0" min="0" max="59" value="0" oninput="actualizarTiempoTotal()" />
+            </div>
+          </div>
+          <div class="time-display" id="tiempoTotal">
+            Tiempo total: 0h 0m 0s (0.00 horas)
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="unidadMaterial">
+              <i class="fas fa-ruler"></i> Unidad de medida del material
+              <span class="tooltip-icon" data-tooltip="elige si quieres especificar el material en metros lineales o peso en gramos">ℹ️</span>
+            </label>
+            <select id="unidadMaterial" onchange="cambiarUnidadMaterial()">
+              <option value="metros">📏 Metros</option>
+              <option value="gramos">⚖️ Gramos</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="cantidadMaterial" id="labelCantidadMaterial">
+              <i class="fas fa-weight-hanging"></i> <span id="labelTexto">Metros estimados a usar</span>
+              <span class="tooltip-icon" data-tooltip="cantidad de filamento necesario se convertirá automáticamente según el tipo de material seleccionado">ℹ️</span>
+            </label>
+            <input type="number" id="cantidadMaterial" placeholder="Ej: 30" min="0" step="0.1" />
+            <div class="conversion-display" id="conversionDisplay" style="display: none;"></div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="tipoFilamento">
+              <i class="fas fa-industry"></i> Tipo de filamento
+              <span class="tooltip-icon" data-tooltip="tipo de material a usar cada material tiene diferente densidad que afecta el cálculo peso-volumen">ℹ️</span>
+            </label>
+            <select id="tipoFilamento" onchange="actualizarDensidad()">
+              <option value="1.24">PLA (1.24 g/cm³)</option>
+              <option value="1.25">PLA+ (1.25 g/cm³)</option>
+              <option value="1.35">PLA Fibra de Carbono (1.35 g/cm³)</option>
+              <option value="1.27">ABS (1.27 g/cm³)</option>
+              <option value="1.23">PETG (1.23 g/cm³)</option>
+              <option value="1.20">TPU Flexible (1.20 g/cm³)</option>
+              <option value="1.44">ASA (1.44 g/cm³)</option>
+              <option value="1.15">WOOD (1.15 g/cm³)</option>
+              <option value="personalizado">🔧 Personalizado</option>
+            </select>
+            <div id="densidadPersonalizada" style="display: none; margin-top: 0.5rem;">
+              <input type="number" id="densidadCustom" placeholder="Densidad (g/cm³)" min="0.5" max="3.0" step="0.01" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="porcentajeDesperdicio">
+              <i class="fas fa-recycle"></i> Desperdicio (%)
+              <span class="tooltip-icon" data-tooltip="porcentaje extra de filamento considerado por desperdicios soportes purga y fallos típicamente 5-15%">ℹ️</span>
+            </label>
+            <input type="number" id="porcentajeDesperdicio" value="10" step="1" min="0" max="50" />
+            <div class="quick-options">
+              <button onclick="aplicarValorRapido('porcentajeDesperdicio', 5)" class="quick-btn">Mínimo (5)</button>
+              <button onclick="aplicarValorRapido('porcentajeDesperdicio', 10)" class="quick-btn">Normal (10)</button>
+              <button onclick="aplicarValorRapido('porcentajeDesperdicio', 15)" class="quick-btn">Alto (15)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="impresora">
+              <i class="fas fa-print"></i> Impresora (Consumo automático)
+              <span class="tooltip-icon" data-tooltip="selecciona tu modelo de impresora para aplicar automáticamente su consumo eléctrico">ℹ️</span>
+            </label>
+            <select id="impresora" onchange="aplicarConsumoImpresora()">
+              <option value="manual">🔧 Manual</option>
+              <option value="120">Creality K1C (120W) ⭐</option>
+              <option value="350">Creality K1 Max (350W)</option>
+              <option value="85">Creality Ender 3 V2 (85W)</option>
+              <option value="110">Creality Ender 3 S1 (110W)</option>
+              <option value="80">Prusa i3 MK3S+ (80W)</option>
+              <option value="350">Bambu Lab X1 Carbon (350W)</option>
+              <option value="250">Bambu Lab A1 mini (250W)</option>
+              <option value="300">Bambu Lab P1P (300W)</option>
+              <option value="95">Artillery Sidewinder X2 (95W)</option>
+              <option value="140">Anycubic Kobra 2 (140W)</option>
+              <option value="160">FlashForge Creator Pro (160W)</option>
+              <option value="200">Raise3D E2 (200W)</option>
+              <option value="270">Qidi Tech X-Max 3 (270W)</option>
+            </select>
+            <div class="quick-options">
+              <button onclick="aplicarOpcionRapida('impresora', 120)" class="quick-btn">K1C (120W)</button>
+              <button onclick="aplicarOpcionRapida('impresora', 250)" class="quick-btn">A1 mini (250W)</button>
+              <button onclick="aplicarOpcionRapida('impresora', 350)" class="quick-btn">X1 Carbon (350W)</button>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="watts">
+              <i class="fas fa-bolt"></i> Consumo de la impresora (Watts)
+              <span class="tooltip-icon" data-tooltip="consumo eléctrico de la impresora durante la impresión se usa para calcular el costo de electricidad">ℹ️</span>
+            </label>
+            <input type="number" id="watts" placeholder="Ej: 120" min="0" />
+            <div class="quick-options">
+              <button onclick="aplicarValorRapido('watts', 80)" class="quick-btn">Básica (80W)</button>
+              <button onclick="aplicarValorRapido('watts', 120)" class="quick-btn">Estándar (120W)</button>
+              <button onclick="aplicarValorRapido('watts', 250)" class="quick-btn">Avanzada (250W)</button>
+              <button onclick="aplicarValorRapido('watts', 350)" class="quick-btn">Industrial (350W)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="costoCarrete">
+              <i class="fas fa-dollar-sign"></i> Costo total del carrete (MXN)
+              <span class="tooltip-icon" data-tooltip="precio que pagaste por el carrete completo de 1kg de filamento incluyendo iva">ℹ️</span>
+            </label>
+            <input type="number" id="costoCarrete" placeholder="Ej: 500" min="0" step="0.01" />
+            <div class="quick-options">
+              <button onclick="aplicarValorRapido('costoCarrete', 350)" class="quick-btn">Económico (350)</button>
+              <button onclick="aplicarValorRapido('costoCarrete', 500)" class="quick-btn">Estándar (500)</button>
+              <button onclick="aplicarValorRapido('costoCarrete', 750)" class="quick-btn">Premium (750)</button>
+              <button onclick="aplicarValorRapido('costoCarrete', 1200)" class="quick-btn">Especialidad (1200)</button>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="costoExtra">
+              <i class="fas fa-wrench"></i> Otros costos (postprocesado, empaque, etc.)
+              <span class="tooltip-icon" data-tooltip="costos adicionales como lijado pintura, accesorios, programación, etc">ℹ️</span>
+            </label>
+            <input type="number" id="costoExtra" placeholder="Ej: 20" min="0" step="0.01" />
+            <div class="quick-options">
+              <button onclick="aplicarValorRapido('costoExtra', 0)" class="quick-btn">Sin extras (0)</button>
+              <button onclick="aplicarValorRapido('costoExtra', 20)" class="quick-btn">Básico (20)</button>
+              <button onclick="aplicarValorRapido('costoExtra', 50)" class="quick-btn">Completo (50)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="comisionMarketplace">
+            <i class="fas fa-store"></i> Comisión marketplace (%)
+            <span class="tooltip-icon" data-tooltip="porcentaje que cobra la plataforma de venta por cada transacción se aplica sobre el precio final">ℹ️</span>
+          </label>
+          <select id="comisionMarketplace" onchange="manejarComisionMarketplace()">
+            <option value="0">🏪 Venta directa (0%)</option>
+            <option value="3.48">💳 PayPal/Stripe (3% + IVA = 3.48%)</option>
+            <option value="5.8">🛒 Tienda propia + PayPal (5% + IVA = 5.8%)</option>
+            <option value="9.28">🌐 Shopify + procesamiento (8% + IVA = 9.28%)</option>
+            <option value="13.92">📦 Amazon México (12% + IVA = 13.92%)</option>
+            <option value="17.4" selected>🟡 MercadoLibre Básico (15% + IVA = 17.4%)</option>
+            <option value="20.88">🟡 MercadoLibre + Publicidad (18% + IVA = 20.88%)</option>
+            <option value="25.52">🟡 MercadoLibre Full Service (22% + IVA = 25.52%)</option>
+            <option value="29">🟡 MercadoLibre Premium (25% + IVA = 29%)</option>
+            <option value="personalizada">🔧 Personalizada</option>
+          </select>
+          <div class="quick-options">
+            <button onclick="aplicarOpcionRapida('comisionMarketplace', 0)" class="quick-btn">Directo (0%)</button>
+            <button onclick="aplicarOpcionRapida('comisionMarketplace', 17.4)" class="quick-btn">ML Básico (17.4%)</button>
+            <button onclick="aplicarOpcionRapida('comisionMarketplace', 25.52)" class="quick-btn">ML Full (25.52%)</button>
+            <button onclick="aplicarOpcionRapida('comisionMarketplace', 3.48)" class="quick-btn">PayPal (3.48%)</button>
+          </div>
+          
+          <div id="comisionPersonalizada" style="display: none; margin-top: 1rem;">
+            <label for="comisionCustom">
+              <i class="fas fa-percentage"></i> Comisión personalizada (%)
+            </label>
+            <input type="number" id="comisionCustom" placeholder="Ej: 10" min="0" max="50" step="0.1" />
+          </div>
+        </div>
+
+        <button onclick="agregarPieza()">➕ Agregar pieza a la cotización</button>
+        
+        <div class="preset-buttons">
+          <small style="color: var(--text-secondary); width: 100%; text-align: center; margin-bottom: 0.5rem;">⚡ Presets rápidos:</small>
+          <button class="preset-btn tooltip" onclick="aplicarPresetRapido('miniatura')">
+            📸 Miniatura
+            <span class="tooltiptext">1.5h, 15g - Ideal para llaveros y figuritas</span>
+          </button>
+          <button class="preset-btn tooltip" onclick="aplicarPresetRapido('decorativo')">
+            🎨 Decorativo
+            <span class="tooltiptext">4h, 50g - Perfecto para objetos ornamentales</span>
+          </button>
+          <button class="preset-btn tooltip" onclick="aplicarPresetRapido('funcional')">
+            🔧 Funcional
+            <span class="tooltiptext">8h, 120g - Herramientas y piezas útiles</span>
+          </button>
+          <button class="preset-btn tooltip" onclick="aplicarPresetRapido('prototipo')">
+            🚀 Prototipo
+            <span class="tooltiptext">12.5h, 200g - Proyectos complejos</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="tabla-resultados" id="tablaResultados" style="display:none;">
+        <h2>🧾 Resumen de Cotización</h2>
+        <table id="resumenTabla">
+          <thead>
+            <tr>
+              <th>Pieza</th>
+              <th>Cantidad</th>
+              <th>Tiempo</th>
+              <th>Material</th>
+              <th>Unitario (MXN)</th>
+              <th>Total (MXN)</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        
+        <div class="total-section">
+          <div class="total-amount">
+            Total General: $<span id="totalGeneral">0.00</span> MXN
+          </div>
+          <div class="button-group">
+            <button onclick="generarPDF()">📄 Descargar PDF</button>
+            <button onclick="limpiarTabla()" style="background: #6b7280;">🗑️ Limpiar Todo</button>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>⚠️ Los precios aquí calculados son estimaciones y pueden cambiar sin previo aviso.</p>
+        <p>🚚 No se incluye costo de entrega y/o envío. Los precios son únicamente por las piezas impresas.</p>
+        <p>💵 Todos los precios están expresados en pesos mexicanos y no incluyen IVA.</p>
+        <div class="footer-brand">
+          <a href="https://goldtech.mx" target="_blank">
+            <img id="goldtech-footer-logo" src="https://bio.goldtech.mx/logogoldtech" alt="GoldTech MX Logo" loading="lazy">
+          </a>
+        </div>
+        <div class="social-icons">
+          <a href="https://tiktok.com/@goldtechmx" target="_blank" class="tiktok" title="TikTok">
+            <i class="fab fa-tiktok"></i>
+          </a>
+          <a href="https://instagram.com/goldtechmx" target="_blank" class="instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://youtube.com/@goldtechmx" target="_blank" class="youtube" title="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://linkedin.com/company/goldtechmx" target="_blank" class="linkedin" title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://facebook.com/goldtechmx" target="_blank" class="facebook" title="Facebook">
+            <i class="fab fa-facebook"></i>
+          </a>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <script src="./assets/js/config.js"></script>
+  <script src="./assets/js/app.js"></script>
+  <script src="./assets/js/branding-config.js"></script>
+  <script src="./assets/js/branding-ui.js"></script>
+  <script src="./assets/js/setup.js"></script>
+  <script src="./assets/js/integration.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+{
+  "name": "Cotizador Forge3D - GoldTech MX",
+  "short_name": "Forge3D",
+  "description": "Calculadora profesional para determinar precios de proyectos de impresión 3D con costos de material, tiempo, electricidad y más",
+  "version": "2.1.0",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#CD9430",
+  "background_color": "#0e0e0e",
+  "scope": "/",
+  "lang": "es-MX",
+  "categories": ["business", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "https://bio.goldtech.mx/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://bio.goldtech.mx/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://bio.goldtech.mx/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://bio.goldtech.mx/forge3d_oscuro",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/images/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Vista de escritorio del cotizador"
+    },
+    {
+      "src": "assets/images/screenshot-mobile.png",
+      "sizes": "640x1136",
+      "type": "image/png",
+      "label": "Vista móvil del cotizador"
+    }
+  ],
+  "features": [
+    "cross-platform",
+    "offline"
+  ],
+  "shortcuts": [
+    {
+      "name": "Nueva Cotización",
+      "short_name": "Nueva",
+      "description": "Crear una nueva cotización rápidamente",
+      "url": "/?action=nueva",
+      "icons": [
+        {
+          "src": "https://bio.goldtech.mx/favicon-32x32.png",
+          "sizes": "32x32"
+        }
+      ]
+    },
+    {
+      "name": "Configuración",
+      "short_name": "Config",
+      "description": "Abrir panel de configuración",
+      "url": "/?action=config",
+      "icons": [
+        {
+          "src": "https://bio.goldtech.mx/favicon-32x32.png",
+          "sizes": "32x32"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 480
+  },
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  }
+}
