@@ -65,6 +65,32 @@ class BrandingUI {
             this.updateColorPreview();
           }
         });
+         const whatsappFloatingInputs = [
+      'whatsapp-floating-enabled',
+      'whatsapp-floating-position', 
+      'whatsapp-floating-delay',
+      'whatsapp-floating-animation',
+      'whatsapp-floating-message'
+    ];
+    
+    whatsappFloatingInputs.forEach(inputId => {
+      const input = document.getElementById(inputId);
+      if (input) {
+        input.addEventListener('change', () => this.updateWhatsAppFloatingPreview());
+      }
+    });
+    
+    // Event listener especial para el slider de tamaño
+    const sizeSlider = document.getElementById('whatsapp-floating-size');
+    if (sizeSlider) {
+      sizeSlider.addEventListener('input', (e) => {
+        const sizeValue = document.getElementById('whatsapp-size-value');
+        if (sizeValue) {
+          sizeValue.textContent = e.target.value + 'px';
+        }
+        this.updateWhatsAppFloatingPreview();
+      });
+    }
       }
     });
 
@@ -193,6 +219,36 @@ class BrandingUI {
       this.setInputValue(`social-${platform}-username`, config.username);
       this.setCheckboxValue(`social-${platform}-enabled`, config.enabled);
     });
+
+    if (branding.whatsappFloating) {
+      this.setCheckboxValue('whatsapp-floating-enabled', branding.whatsappFloating.enabled);
+      this.setInputValue('whatsapp-floating-position', branding.whatsappFloating.position);
+      this.setInputValue('whatsapp-floating-delay', branding.whatsappFloating.showAfterSeconds);
+      this.setCheckboxValue('whatsapp-floating-hide-scroll', branding.whatsappFloating.hideOnScroll);
+      this.setInputValue('whatsapp-floating-animation', branding.whatsappFloating.animation);
+      this.setInputValue('whatsapp-floating-message', branding.whatsappFloating.message);
+      
+      // Mensajes personalizados
+      if (branding.whatsappFloating.customMessages) {
+        this.setInputValue('whatsapp-floating-message-quote', branding.whatsappFloating.customMessages.quote);
+        this.setInputValue('whatsapp-floating-message-support', branding.whatsappFloating.customMessages.support);
+        this.setInputValue('whatsapp-floating-message-general', branding.whatsappFloating.customMessages.general);
+      }
+      
+      // Estilos
+      if (branding.whatsappFloating.styles) {
+        const size = branding.whatsappFloating.styles.size?.replace('px', '') || '60';
+        this.setInputValue('whatsapp-floating-size', size);
+        this.setInputValue('whatsapp-floating-bg-color', branding.whatsappFloating.styles.backgroundColor);
+        this.setInputValue('whatsapp-floating-hover-color', branding.whatsappFloating.styles.hoverColor);
+        
+        // Actualizar el valor mostrado del range
+        const sizeValue = document.getElementById('whatsapp-size-value');
+        if (sizeValue) {
+          sizeValue.textContent = size + 'px';
+        }
+      }
+    }
     
     // SEO
     this.setInputValue('brand-seo-title', branding.seo.title);
@@ -213,6 +269,32 @@ class BrandingUI {
     
     // Actualizar previews
     this.updateAllPreviews();
+    updateWhatsAppFloatingPreview() {
+    // Si existe una instancia del botón flotante, actualizarla
+    if (window.whatsappFloatingInstance) {
+      const config = {
+        enabled: this.getCheckboxValue('whatsapp-floating-enabled'),
+        position: this.getInputValue('whatsapp-floating-position'),
+        showAfterSeconds: parseInt(this.getInputValue('whatsapp-floating-delay')) || 10,
+        animation: this.getInputValue('whatsapp-floating-animation'),
+        message: this.getInputValue('whatsapp-floating-message'),
+        styles: {
+          size: this.getInputValue('whatsapp-floating-size') + 'px',
+          backgroundColor: this.getInputValue('whatsapp-floating-bg-color') || '#25D366',
+          hoverColor: this.getInputValue('whatsapp-floating-hover-color') || '#128C7E'
+        }
+      };
+      
+      window.whatsappFloatingInstance.updateConfig(config);
+      
+      // Mostrar/ocultar según configuración
+      if (config.enabled) {
+        window.whatsappFloatingInstance.show();
+      } else {
+        window.whatsappFloatingInstance.hide();
+      }
+    }
+  }
   }
 
   /**
@@ -457,6 +539,38 @@ class BrandingUI {
           url: this.getInputValue('social-whatsapp-url'),
           number: this.getInputValue('social-whatsapp-number'),
           enabled: this.getCheckboxValue('social-whatsapp-enabled')
+ },
+      whatsappFloating: {
+        enabled: this.getCheckboxValue('whatsapp-floating-enabled'),
+        position: this.getInputValue('whatsapp-floating-position'),
+        showAfterSeconds: parseInt(this.getInputValue('whatsapp-floating-delay')) || 10,
+        hideOnScroll: this.getCheckboxValue('whatsapp-floating-hide-scroll'),
+        animation: this.getInputValue('whatsapp-floating-animation'),
+        message: this.getInputValue('whatsapp-floating-message'),
+        customMessages: {
+          quote: this.getInputValue('whatsapp-floating-message-quote'),
+          support: this.getInputValue('whatsapp-floating-message-support'),
+          general: this.getInputValue('whatsapp-floating-message-general')
+        },
+        styles: {
+          size: this.getInputValue('whatsapp-floating-size') + 'px',
+          backgroundColor: this.getInputValue('whatsapp-floating-bg-color') || '#25D366',
+          hoverColor: this.getInputValue('whatsapp-floating-hover-color') || '#128C7E',
+          iconColor: '#FFFFFF',
+          shadow: '0 4px 12px rgba(0,0,0,0.3)',
+          zIndex: 9999
+        },
+        responsive: {
+          mobile: {
+            size: (parseInt(this.getInputValue('whatsapp-floating-size')) - 10) + 'px' || '50px',
+            position: this.getInputValue('whatsapp-floating-position'),
+            margin: '15px'
+          },
+          desktop: {
+            size: this.getInputValue('whatsapp-floating-size') + 'px' || '60px',
+            position: this.getInputValue('whatsapp-floating-position'),
+            margin: '25px'
+          }
         }
       },
       seo: {
