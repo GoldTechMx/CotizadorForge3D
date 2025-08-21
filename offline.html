@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sin Conexión - Cotizador Forge3D</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0e0e0e 0%, #1a1a2e 100%);
+      color: #e0e0e0;
+      margin: 0;
+      padding: 2rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .container {
+      max-width: 500px;
+      text-align: center;
+      background: rgba(26, 26, 46, 0.9);
+      padding: 3rem 2rem;
+      border-radius: 20px;
+      border: 1px solid rgba(205, 148, 48, 0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .icon {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    h1 {
+      color: #CD9430;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    
+    p {
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }
+    
+    .retry-btn {
+      background: #CD9430;
+      color: #000;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .retry-btn:hover {
+      background: #e1aa4a;
+      transform: translateY(-2px);
+    }
+    
+    .features {
+      margin-top: 2rem;
+      text-align: left;
+      background: rgba(15, 15, 15, 0.3);
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+    
+    .features h3 {
+      color: #CD9430;
+      margin-bottom: 1rem;
+    }
+    
+    .features ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .features li {
+      padding: 0.5rem 0;
+      opacity: 0.8;
+    }
+    
+    .features li::before {
+      content: "✓ ";
+      color: #CD9430;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">📶</div>
+    <h1>Sin Conexión a Internet</h1>
+    <p>
+      No hay conexión a internet disponible en este momento.
+    </p>
+    <p>
+      <strong>¡Pero no te preocupes!</strong> El Cotizador Forge3D puede funcionar 
+      sin conexión con todas las funciones principales.
+    </p>
+    
+    <div class="features">
+      <h3>Funciones Disponibles Sin Conexión:</h3>
+      <ul>
+        <li>Calcular precios de impresión 3D</li>
+        <li>Agregar y editar piezas</li>
+        <li>Configurar parámetros avanzados</li>
+        <li>Usar presets rápidos</li>
+        <li>Cambiar temas (claro/oscuro)</li>
+      </ul>
+    </div>
+    
+    <a href="/" class="retry-btn" onclick="window.location.reload()">
+      🔄 Reintentar Conexión
+    </a>
+  </div>
+
+  <script>
+    // Auto-retry cuando se recupere la conexión
+    window.addEventListener('online', () => {
+      window.location.reload();
+    });
+    
+    // Mostrar estado de conexión
+    function updateConnectionStatus() {
+      const isOnline = navigator.onLine;
+      if (isOnline) {
+        window.location.href = '/';
+      }
+    }
+    
+    // Verificar cada 5 segundos
+    setInterval(updateConnectionStatus, 5000);
+  </script>
+</body>
+</html>
