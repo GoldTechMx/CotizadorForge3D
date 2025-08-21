@@ -10,9 +10,9 @@ const DEFAULT_BRANDING = {
     name: "GoldTech MX",
     slogan: "Soluciones de Impresión 3D",
     website: "https://goldtech.mx",
-    email: "contacto@goldtech.mx",
-    phone: "+52 477 123 4567",
-    address: "León de los Aldama, Guanajuato, MX"
+    email: "support@goldtech.mx",
+    phone: "+52 477 175 60 28",
+    address: "León, Guanajuato, MX"
   },
   
   logos: {
@@ -42,7 +42,7 @@ const DEFAULT_BRANDING = {
     youtube: "https://youtube.com/@goldtechmx",
     linkedin: "https://linkedin.com/company/goldtechmx",
     facebook: "https://facebook.com/goldtechmx",
-    whatsapp: "https://wa.me/524771234567"
+    whatsapp: "https://wa.me/524771756028"
   },
   
   customization: {
@@ -69,7 +69,7 @@ const APP_CONFIG = {
   
   // Configuración para GitHub deployment
   deployment: {
-    repository: "https://github.com/goldtechmx/forge3d-cotizador",
+    repository: "https://github.com/goldtechmx/CotizadorForge3D",
     license: "MIT",
     attribution: {
       required: false,
