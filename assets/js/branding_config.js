@@ -67,19 +67,40 @@ const DEFAULT_BRANDING = {
       username: "",
       enabled: false
     },
-    whatsapp: { 
-      url: "https://wa.me/524771756028",
-      number: "4771756028", 
-      enabled: true
-    }
-  },
-  
-  whatsappFloating: {
+    whatsappFloating: {
   enabled: true,
-  position: 'bottom-right',
-  message: 'Hola, vengo del cotizador Forge3D',
-  showAfterSeconds: 30
-}
+  position: 'bottom-right', // 'bottom-left', 'bottom-right', 'top-right', 'top-left'
+  showAfterSeconds: 10, // Tiempo antes de aparecer
+  hideOnScroll: false, // Ocultar al hacer scroll
+  animation: 'bounce', // 'bounce', 'slide', 'fade', 'pulse'
+  message: 'Hola! Vengo del cotizador Forge3D y me interesa obtener información sobre sus servicios de impresión 3D.',
+  customMessages: {
+    quote: 'Hola! Tengo una cotización desde Forge3D y me gustaría discutir los detalles.',
+    support: 'Hola! Necesito soporte técnico con el cotizador Forge3D.',
+    general: 'Hola! Me interesa conocer más sobre sus servicios de impresión 3D.'
+  },
+  styles: {
+    size: '60px', // Tamaño del botón
+    backgroundColor: '#25D366', // Verde WhatsApp
+    hoverColor: '#128C7E', // Verde más oscuro al hover
+    iconColor: '#FFFFFF',
+    shadow: '0 4px 12px rgba(0,0,0,0.3)',
+    zIndex: 9999
+  },
+  responsive: {
+    mobile: {
+      size: '50px',
+      position: 'bottom-right',
+      margin: '15px'
+    },
+    desktop: {
+      size: '60px', 
+      position: 'bottom-right',
+      margin: '25px'
+    }
+  }
+  },
+
 
   // Colores de marca (CSS custom properties)
   colors: {
