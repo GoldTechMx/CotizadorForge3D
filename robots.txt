@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://gtt.mx/forge3d/sitemap.xml
+
+# Directorios optimizados
+Allow: /assets/
+Allow: /manifest.json
+Allow: /sw.js
+
+# Crawl-delay para bots agresivos
+User-agent: *
+Crawl-delay: 1
+
+# Específico para motores de búsqueda principales
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
