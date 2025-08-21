@@ -136,6 +136,7 @@
         <button class="tab-btn" onclick="switchConfigTab('branding')">
           <i class="fas fa-palette"></i> Branding
         </button>
+        <button class="tab-btn" onclick="BrandingUI.showTab('whatsapp')">📱 WhatsApp</button>
       </div>
 
       <!-- Panel de configuración del cotizador -->
@@ -352,6 +353,87 @@
           </div>
         </div>
       </div>
+
+      <div id="tab-whatsapp" class="tab-content">
+  <h3>📱 WhatsApp Flotante</h3>
+  
+  <div class="form-group">
+    <label>
+      <input type="checkbox" id="whatsapp-floating-enabled"> 
+      Habilitar botón flotante
+    </label>
+  </div>
+  
+  <div class="form-group">
+    <label for="whatsapp-floating-position">Posición:</label>
+    <select id="whatsapp-floating-position">
+      <option value="bottom-right">Abajo derecha</option>
+      <option value="bottom-left">Abajo izquierda</option>
+      <option value="top-right">Arriba derecha</option>
+      <option value="top-left">Arriba izquierda</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label for="whatsapp-floating-delay">Mostrar después de (segundos):</label>
+    <input type="number" id="whatsapp-floating-delay" min="0" max="60" value="10">
+  </div>
+  
+  <div class="form-group">
+    <label for="whatsapp-floating-animation">Animación:</label>
+    <select id="whatsapp-floating-animation">
+      <option value="bounce">Rebote</option>
+      <option value="pulse">Pulso</option>
+      <option value="slide">Deslizar</option>
+      <option value="fade">Aparecer</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label for="whatsapp-floating-message">Mensaje predeterminado:</label>
+    <textarea id="whatsapp-floating-message" rows="3" placeholder="Mensaje que se enviará por WhatsApp"></textarea>
+  </div>
+  
+  <div class="form-group">
+    <label for="whatsapp-floating-size">Tamaño del botón:</label>
+    <input type="range" id="whatsapp-floating-size" min="40" max="80" value="60">
+    <span id="whatsapp-size-value">60px</span>
+  </div>
+  
+  <div class="form-group">
+    <label for="whatsapp-floating-bg-color">Color de fondo:</label>
+    <input type="color" id="whatsapp-floating-bg-color" value="#25D366">
+  </div>
+  
+  <div class="form-group">
+    <label for="whatsapp-floating-hover-color">Color al pasar el mouse:</label>
+    <input type="color" id="whatsapp-floating-hover-color" value="#128C7E">
+  </div>
+  
+  <div class="form-group">
+    <label>
+      <input type="checkbox" id="whatsapp-floating-hide-scroll">
+      Ocultar al hacer scroll
+    </label>
+  </div>
+  
+  <h4>💬 Mensajes Personalizados</h4>
+  
+  <div class="form-group">
+    <label for="whatsapp-floating-message-quote">Mensaje para cotizaciones:</label>
+    <textarea id="whatsapp-floating-message-quote" rows="2" placeholder="Mensaje cuando se envía una cotización"></textarea>
+  </div>
+  
+  <div class="form-group">
+    <label for="whatsapp-floating-message-support">Mensaje para soporte:</label>
+    <textarea id="whatsapp-floating-message-support" rows="2" placeholder="Mensaje para solicitar soporte"></textarea>
+  </div>
+  
+  <div class="form-group">
+    <label for="whatsapp-floating-message-general">Mensaje general:</label>
+    <textarea id="whatsapp-floating-message-general" rows="2" placeholder="Mensaje general de contacto"></textarea>
+  </div>
+</div>
       
       <!-- Botones de acción -->
       <div class="config-actions">
