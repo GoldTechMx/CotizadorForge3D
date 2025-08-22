@@ -27,12 +27,123 @@ class BrandingUI {
      * Inicializa la UI de branding
      */
     init() {
+<<<<<<< HEAD
+=======
         this.createBrandingModal();
+>>>>>>> be363583fdcff963d0d4d544ac9db7e88cc74d65
         this.setupEventListeners();
         this.loadCurrentConfig();
     }
 
     /**
+<<<<<<< HEAD
+     * Configura los event listeners
+     */
+    setupEventListeners() {
+        // Event listeners para inputs de logo con preview
+        const logoInputs = ['brand-logo-primary-dark', 'brand-logo-primary-light',
+            'brand-logo-secondary-dark', 'brand-logo-secondary-light'];
+
+        logoInputs.forEach(inputId => {
+            const input = document.getElementById(inputId);
+            if (input) {
+                input.addEventListener('input', () => this.updateLogoPreview(inputId));
+                input.addEventListener('change', () => this.updateLogoPreview(inputId));
+            }
+        });
+
+        // Event listeners para inputs de color
+        const colorInputs = ['brand-color-primary', 'brand-color-secondary', 'brand-color-accent'];
+        colorInputs.forEach(inputId => {
+            const colorInput = document.getElementById(inputId);
+            const hexInput = document.getElementById(inputId + '-hex');
+
+            if (colorInput && hexInput) {
+                colorInput.addEventListener('input', (e) => {
+                    hexInput.value = e.target.value.toUpperCase();
+                    this.updateColorPreview();
+                });
+
+                hexInput.addEventListener('input', (e) => {
+                    if (this.isValidHex(e.target.value)) {
+                        colorInput.value = e.target.value;
+                        this.updateColorPreview();
+                    }
+                });
+            }
+        });
+
+        // Event listeners para checkboxes de redes sociales
+        const socialPlatforms = ['tiktok', 'instagram', 'youtube', 'linkedin', 'facebook', 'twitter', 'whatsapp'];
+        socialPlatforms.forEach(platform => {
+            const checkbox = document.getElementById(`social-${platform}-enabled`);
+            if (checkbox) {
+                checkbox.addEventListener('change', () => this.updateSocialPreview());
+            }
+        });
+
+        // Auto-save mientras se escribe
+        const allInputs = document.querySelectorAll('.branding-panel input, .branding-panel textarea');
+        allInputs.forEach(input => {
+            input.addEventListener('input', this.debounce(() => {
+                if (this.previewMode) {
+                    this.applyPreview();
+                }
+            }, 500));
+        });
+    }
+
+    /**
+     * Función debounce para optimizar rendimiento
+     */
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    /**
+     * Abre el panel de branding
+     */
+    open() {
+        const panel = document.getElementById('brandingPanel');
+        if (panel) {
+            this.originalBranding = brandingManager.getCurrentBranding();
+            this.loadCurrentConfig();
+            panel.style.display = 'block';
+            this.isOpen = true;
+            document.body.style.overflow = 'hidden';
+
+            // Animar entrada
+            setTimeout(() => {
+                panel.style.opacity = '1';
+            }, 10);
+        }
+    }
+
+    /**
+     * Cierra el panel de branding
+     */
+    close() {
+        const panel = document.getElementById('brandingPanel');
+        if (panel) {
+            panel.style.display = 'none';
+            this.isOpen = false;
+            document.body.style.overflow = '';
+
+            // Restaurar configuración original si estaba en preview
+            if (this.previewMode) {
+                brandingManager.saveBranding(this.originalBranding);
+                this.previewMode = false;
+                this.updatePreviewButton();
+            }
+=======
      * Crea el modal de branding si no existe
      */
     createBrandingModal() {
@@ -690,6 +801,7 @@ class BrandingUI {
             brandingManager.saveBranding(this.originalBranding);
             this.previewMode = false;
             this.updatePreviewButton();
+>>>>>>> be363583fdcff963d0d4d544ac9db7e88cc74d65
         }
     }
 
@@ -744,6 +856,10 @@ class BrandingUI {
             this.setInputValue(`social-${platform}-url`, config.url);
             this.setInputValue(`social-${platform}-username`, config.username);
             this.setCheckboxValue(`social-${platform}-enabled`, config.enabled);
+<<<<<<< HEAD
+        });
+
+=======
             if (platform === 'whatsapp') {
                 this.setInputValue(`social-${platform}-number`, config.number);
             }
@@ -803,6 +919,7 @@ class BrandingUI {
             }
         }
 
+>>>>>>> be363583fdcff963d0d4d544ac9db7e88cc74d65
         // SEO
         this.setInputValue('brand-seo-title', branding.seo.title);
         this.setInputValue('brand-seo-description', branding.seo.description);
@@ -820,6 +937,8 @@ class BrandingUI {
         this.setInputValue('brand-pwa-name', branding.pwa.name);
         this.setInputValue('brand-pwa-short-name', branding.pwa.shortName);
 
+<<<<<<< HEAD
+=======
         // Customization
         this.setCheckboxValue('custom-show-company', branding.customization.showCompanyInfo);
         this.setCheckboxValue('custom-show-social', branding.customization.showSocialLinks);
@@ -827,11 +946,177 @@ class BrandingUI {
         this.setCheckboxValue('custom-show-forge-logo', branding.customization.showForge3DLogo);
         this.setCheckboxValue('custom-allow-theme-toggle', branding.customization.allowThemeToggle);
 
+>>>>>>> be363583fdcff963d0d4d544ac9db7e88cc74d65
         // Actualizar previews
         this.updateAllPreviews();
     }
 
     /**
+<<<<<<< HEAD
+     * Establece el valor de un input
+     */
+    setInputValue(id, value) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.value = value || '';
+        }
+    }
+
+    /**
+     * Establece el valor de un checkbox
+     */
+    setCheckboxValue(id, value) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.checked = Boolean(value);
+        }
+    }
+
+    /**
+     * Obtiene el valor de un input
+     */
+    getInputValue(id) {
+        const element = document.getElementById(id);
+        return element ? element.value : '';
+    }
+
+    /**
+     * Obtiene el valor de un checkbox
+     */
+    getCheckboxValue(id) {
+        const element = document.getElementById(id);
+        return element ? element.checked : false;
+    }
+
+    /**
+     * Actualiza el preview de un logo
+     */
+    updateLogoPreview(inputId) {
+        const input = document.getElementById(inputId);
+        const previewId = inputId.replace('brand-', 'preview-');
+        const preview = document.getElementById(previewId);
+
+        if (input && preview) {
+            const url = input.value.trim();
+            if (url && this.isValidUrl(url)) {
+                preview.src = url;
+                preview.style.display = 'block';
+                preview.onerror = () => {
+                    preview.style.display = 'none';
+                };
+            } else {
+                preview.style.display = 'none';
+            }
+        }
+    }
+
+    /**
+     * Actualiza el preview de colores
+     */
+    updateColorPreview() {
+        const primaryColor = this.getInputValue('brand-color-primary');
+        const secondaryColor = this.getInputValue('brand-color-secondary');
+        const accentColor = this.getInputValue('brand-color-accent');
+
+        const primaryPreview = document.getElementById('preview-primary');
+        const secondaryPreview = document.getElementById('preview-secondary');
+        const accentPreview = document.getElementById('preview-accent');
+
+        if (primaryPreview) primaryPreview.style.backgroundColor = primaryColor;
+        if (secondaryPreview) secondaryPreview.style.backgroundColor = secondaryColor;
+        if (accentPreview) accentPreview.style.backgroundColor = accentColor;
+
+        // Aplicar en tiempo real si está en modo preview
+        if (this.previewMode) {
+            document.documentElement.style.setProperty('--accent-primary', primaryColor);
+            document.documentElement.style.setProperty('--accent-secondary', secondaryColor);
+        }
+    }
+
+    /**
+     * Actualiza el preview de redes sociales
+     */
+    updateSocialPreview() {
+        // Esta función se puede expandir para mostrar un preview en tiempo real
+        console.log('Social preview updated');
+    }
+
+    /**
+     * Actualiza todos los previews
+     */
+    updateAllPreviews() {
+        // Logos
+        ['brand-logo-primary-dark', 'brand-logo-primary-light',
+            'brand-logo-secondary-dark', 'brand-logo-secondary-light'].forEach(id => {
+                this.updateLogoPreview(id);
+            });
+
+        // Colores
+        this.updateColorPreview();
+
+        // Redes sociales
+        this.updateSocialPreview();
+    }
+
+    /**
+     * Aplica un preset de colores
+     */
+    applyColorPreset(presetName) {
+        const preset = this.colorPresets[presetName];
+        if (preset) {
+            this.setInputValue('brand-color-primary', preset.primary);
+            this.setInputValue('brand-color-primary-hex', preset.primary);
+            this.setInputValue('brand-color-secondary', preset.secondary);
+            this.setInputValue('brand-color-secondary-hex', preset.secondary);
+            this.setInputValue('brand-color-accent', preset.accent);
+            this.setInputValue('brand-color-accent-hex', preset.accent);
+
+            this.updateColorPreview();
+
+            // Mostrar notificación
+            if (typeof NotificationManager !== 'undefined') {
+                NotificationManager.showSuccess(`🎨 Preset de colores "${presetName}" aplicado`);
+            }
+        }
+    }
+
+    /**
+     * Alterna el modo de vista previa
+     */
+    togglePreview() {
+        this.previewMode = !this.previewMode;
+
+        if (this.previewMode) {
+            this.applyPreview();
+        } else {
+            // Restaurar configuración original
+            brandingManager.saveBranding(this.originalBranding);
+        }
+
+        this.updatePreviewButton();
+    }
+
+    /**
+     * Actualiza el botón de preview
+     */
+    updatePreviewButton() {
+        const previewText = document.getElementById('previewText');
+        const previewBtn = document.querySelector('.preview-btn');
+
+        if (previewText && previewBtn) {
+            if (this.previewMode) {
+                previewText.textContent = 'Salir Preview';
+                previewBtn.style.background = '#ef4444';
+            } else {
+                previewText.textContent = 'Vista Previa';
+                previewBtn.style.background = '#3b82f6';
+            }
+        }
+    }
+
+    /**
+=======
+>>>>>>> be363583fdcff963d0d4d544ac9db7e88cc74d65
      * Aplica la configuración actual como preview
      */
     applyPreview() {
@@ -913,6 +1198,8 @@ class BrandingUI {
                     enabled: this.getCheckboxValue('social-whatsapp-enabled')
                 }
             },
+<<<<<<< HEAD
+=======
             // WhatsApp Floating
             whatsappFloating: {
                 enabled: this.getCheckboxValue('whatsapp-floating-enabled'),
@@ -975,6 +1262,7 @@ class BrandingUI {
                     includeWebsite: true
                 }
             },
+>>>>>>> be363583fdcff963d0d4d544ac9db7e88cc74d65
             seo: {
                 title: this.getInputValue('brand-seo-title'),
                 description: this.getInputValue('brand-seo-description'),
@@ -998,6 +1286,8 @@ class BrandingUI {
                 description: this.getInputValue('brand-seo-description'),
                 themeColor: this.getInputValue('brand-color-primary'),
                 backgroundColor: "#0e0e0e"
+<<<<<<< HEAD
+=======
             },
             customization: {
                 showCompanyInfo: this.getCheckboxValue('custom-show-company'),
@@ -1007,6 +1297,7 @@ class BrandingUI {
                 allowThemeToggle: this.getCheckboxValue('custom-allow-theme-toggle'),
                 enableWhatsAppFloating: this.getCheckboxValue('whatsapp-floating-enabled'),
                 enableEmailTemplates: this.getCheckboxValue('email-templates-enabled')
+>>>>>>> be363583fdcff963d0d4d544ac9db7e88cc74d65
             }
         };
     }
@@ -1090,6 +1381,53 @@ class BrandingUI {
     }
 
     /**
+<<<<<<< HEAD
+     * Genera configuración para GitHub
+     */
+    generateGitHubConfig() {
+        const config = this.gatherFormData();
+        const githubConfig = {
+            name: "forge3d-cotizador",
+            description: config.seo.description,
+            homepage: config.company.website,
+            topics: ["3d-printing", "calculator", "pricing", "forge3d"],
+            branding: config,
+            deployment: {
+                customDomain: "",
+                httpsEnabled: true,
+                customHeaders: true
+            },
+            instructions: {
+                setup: [
+                    "1. Fork este repositorio",
+                    "2. Habilitar GitHub Pages en Settings > Pages",
+                    "3. Seleccionar source: Deploy from a branch",
+                    "4. Seleccionar branch: main / (root)",
+                    "5. Tu cotizador estará disponible en: https://username.github.io/forge3d-cotizador"
+                ],
+                customization: [
+                    "1. Editar branding-config.js con tu información",
+                    "2. Reemplazar logos en la carpeta assets/images/",
+                    "3. Modificar colores en styles.css si es necesario",
+                    "4. Actualizar manifest.json con tu información PWA"
+                ]
+            }
+        };
+
+        const dataStr = JSON.stringify(githubConfig, null, 2);
+        const dataBlob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(dataBlob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `forge3d_github_config_${new Date().toISOString().slice(0, 10)}.json`;
+        link.click();
+
+        URL.revokeObjectURL(url);
+
+        if (typeof NotificationManager !== 'undefined') {
+            NotificationManager.showSuccess('🐙 Configuración para GitHub generada');
+=======
      * Toggle vista previa
      */
     togglePreview() {
@@ -1113,10 +1451,18 @@ class BrandingUI {
         if (button) {
             button.textContent = this.previewMode ? '🔄 Cancelar Preview' : '👀 Vista Previa';
             button.className = this.previewMode ? 'btn-warning' : 'btn-secondary';
+>>>>>>> be363583fdcff963d0d4d544ac9db7e88cc74d65
         }
     }
 
     /**
+<<<<<<< HEAD
+     * Valida si una URL es válida
+     */
+    isValidUrl(string) {
+        try {
+            new URL(string); 
+=======
      * Aplica preset de color
      */
     applyColorPreset(presetName) {
@@ -1237,12 +1583,21 @@ class BrandingUI {
     isValidUrl(string) {
         try {
             new URL(string);
+>>>>>>> be363583fdcff963d0d4d544ac9db7e88cc74d65
             return true;
         } catch (_) {
             return false;
         }
     }
 
+<<<<<<< HEAD
+    /**
+     * Valida si un color hex es válido
+     */
+    isValidHex(hex) {
+        return /^#[0-9A-F]{6}$/i.test(hex);
+    }
+=======
     isValidHex(hex) {
         return /^#[0-9A-F]{6}$/i.test(hex);
     }
@@ -1259,6 +1614,7 @@ class BrandingUI {
             }
         }
     }
+>>>>>>> be363583fdcff963d0d4d544ac9db7e88cc74d65
 }
 
 // ===== INSTANCIA GLOBAL =====
@@ -1275,7 +1631,12 @@ window.BrandingUI = {
     importConfig: (input) => brandingUI.importConfig(input),
     applyAndClose: () => brandingUI.applyAndClose(),
     togglePreview: () => brandingUI.togglePreview(),
+<<<<<<< HEAD
+    applyColorPreset: (preset) => brandingUI.applyColorPreset(preset),
+    generateGitHubConfig: () => brandingUI.generateGitHubConfig()
+=======
     applyColorPreset: (preset) => brandingUI.applyColorPreset(preset)
+>>>>>>> be363583fdcff963d0d4d544ac9db7e88cc74d65
 };
 
 // ===== EXPORTAR PARA MÓDULOS =====
