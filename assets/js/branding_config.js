@@ -73,6 +73,13 @@ const DEFAULT_BRANDING = {
       enabled: true
     }
   },
+  
+  whatsappFloating: {
+  enabled: true,
+  position: 'bottom-right',
+  message: 'Hola, vengo del cotizador Forge3D',
+  showAfterSeconds: 30
+}
 
   // Colores de marca (CSS custom properties)
   colors: {
