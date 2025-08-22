@@ -291,7 +291,7 @@ lighthouse index.html
 
 ### Canales de Soporte
 
-- **Mail:** github@goldtech.mx
+- **WhatsApp:** Próximamente
 - **Discord:** Próximamente
 - **GitHub Issues:** Para reportar bugs
 
